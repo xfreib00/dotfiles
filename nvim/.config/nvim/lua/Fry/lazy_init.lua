@@ -12,6 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    spec = "Fry.lazy",
+    spec = { import = "Fry.plugins"},
     change_detection = { notify = false }
 })
