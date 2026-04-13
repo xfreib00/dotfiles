@@ -31,6 +31,7 @@ vim.opt.incsearch = true                    -- Show search results as you type
 vim.opt.hlsearch = true                     -- Highlight search results
 vim.opt.textwidth = 80                      -- Push cursor to new line after 80 characters
 vim.opt.termguicolors = true
+vim.opt.colorcolumn = "80"
 
 --[[
 vim.api.nvim_create_autocmd("User", {
