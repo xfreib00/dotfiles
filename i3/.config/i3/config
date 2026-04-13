@@ -45,7 +45,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -s sysfs/backlight/inte
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec ghostty
 
 # kill focused window
 bindsym $mod+Shift+q kill
