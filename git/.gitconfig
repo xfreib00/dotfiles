@@ -1,0 +1,44 @@
+[user]
+	name = Adam Freiberg
+	email = freiberg.822@gmail.com
+	mail = freiberg.822@gmail.com
+	signingkey = freiberg.822@gmail.com
+[push]
+	default = matching
+[color]
+	ui = true
+[alias]
+	co = checkout
+	ci = commit -v
+	br = branch
+	st = status
+	cp = cherry-pick
+	ff = merge --ff
+	cached = diff --cached
+	amend = commit --amend -v
+	l = log --oneline --decorate
+	last = log -1 --stat
+	ls = ls-files
+	g = log --graph --oneline --decorate --all
+	review = log -p --reverse --stat --decorate --source --topo-order --color-words
+	fixline = log -1 --abbrev=12 --format='Fixes: %h (\"%s\")'
+	cont = rebase --continue
+	abort = rebase --abort
+	l10r = log -p HEAD~10.. --reverse
+	ap = add -p
+[grep]
+	lineNumber = true
+[merge]
+	tool = vimdiff
+	stat = true
+	summary = true
+	ff = false
+	log = true
+[diff]
+	renames = copies
+[difftool]
+	prompt = false
+[credential]
+	helper = cache
+[init]
+	defaultBranch = main
