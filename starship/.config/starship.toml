@@ -9,27 +9,23 @@ $directory\
 [](bg:yellow fg:peach)\
 $git_branch\
 $git_status\
-[](fg:yellow bg:green)\
+$git_state\
+[](fg:yellow bg:sapphire)\
 $c\
 $cpp\
 $rust\
 $golang\
 $nodejs\
-$bun\
 $php\
-$java\
-$kotlin\
 $haskell\
 $python\
 $cmake\
-[](fg:green bg:sapphire)\
-$conda\
-[](fg:sapphire bg:lavender)\
-$time\
-[ ](fg:lavender)\
-$cmd_duration\
+[ ](fg:sapphire)\
 $line_break\
 $character"""
+
+right_format = """
+$cmd_duration"""
 
 palette = 'catppuccin_macchiato'
 
@@ -85,16 +81,22 @@ style = "bg:yellow"
 format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 
 [git_status]
+style = "fg:crust bg:yellow"
+format = '[($all_status$ahead_behind)]($style)'
+modified = '[!$count](fg:black bg:yellow) '
+untracked = '[?$count](fg:black bg:yellow)'
+staged = '[+$count](fg:green bg:yellow) '
+deleted = '[-$count](fg:red bg:yellow)'
+# for using starship on windows drives from WSL uncomment this line and fill
+# path to executable
+#windows_starship = '/mnt/c/Users/Username/...'
+
+[git_state]
 style = "bg:yellow"
-format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
+format = '[\($state( $progress_current of $progress_total)\)]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
-
-[bun]
-symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
@@ -107,42 +109,32 @@ detect_extensions = ["c"]
 [rust]
 symbol = ""
 style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = '[[ $symbol( $version) ](fg:crust bg:sapphire)]($style)'
 
 [golang]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "bg:sapphire"
+format = '[[ $symbol( $version) ](fg:crust bg:sapphire)]($style)'
 
 [php]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
-
-[java]
-symbol = " "
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
-
-[kotlin]
-symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "bg:sapphire"
+format = '[[ $symbol( $version) ](fg:crust bg:sapphire)]($style)'
 
 [haskell]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "bg:sapphire"
+format = '[[ $symbol( $version) ](fg:crust bg:sapphire)]($style)'
 
 [python]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:green)]($style)'
+style = "bg:sapphire"
+format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:sapphire)]($style)'
 
 [cpp]
 symbol = "C++"
-style = "bg:green"
-format = '[$symbol($version(-$name))]($style)'
+style = "bg:sapphire"
+format = '[$symbol]($style)'
 disabled = false
 commands = [[ 'c++', '--version' ], [ 'g++', '--version' ], [ 'clang++',
     '--version' ]]
@@ -151,25 +143,9 @@ detect_extensions = ['cpp', 'cc', 'cxx', 'c++', 'hpp', 'hh', 'hxx', 'h++',
 
 [cmake]
 symbol = "△"
-style = "bg:green"
+style = "bg:sapphire"
 format = '[$symbol($version )]($style)'
 
-[docker_context]
-symbol = ""
-style = "bg:sapphire"
-format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
-
-[conda]
-symbol = "  "
-style = "fg:crust bg:sapphire"
-format = '[$symbol$environment ]($style)'
-ignore_base = false
-
-[time]
-disabled = false
-time_format = "%R"
-style = "bg:lavender"
-format = '[[  $time ](fg:crust bg:lavender)]($style)'
 
 [line_break]
 disabled = true
@@ -185,8 +161,7 @@ vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
 show_milliseconds = true
-format = " in $duration "
-style = "bg:lavender"
+format = "$duration "
 disabled = false
 show_notifications = true
 min_time_to_notify = 45000
